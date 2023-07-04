@@ -3,3 +3,8 @@
     margin: 0px;
     padding: 0px;
 }
+
+.act_links {
+    text-decoration: none;
+    font-size: larger;
+}
