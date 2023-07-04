@@ -63,7 +63,7 @@ class Recipe:
     @classmethod
     def destroy_recipe(cls, data):
         print("Deleting the recipe...")
-        query = "DELETE FROM recipes WHER id = %(id)s;"
+        query = "DELETE FROM recipes WHERE id = %(id)s;"
         print("Deletion successful...")
         return connectToMySQL(db).query_db(query, data)
 

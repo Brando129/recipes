@@ -24,8 +24,8 @@
         <!-- End of Navbar -->
         <div class="card col-10 mx-auto my-5 bg-dark text-light">
             <div class="card-body">
-                <h2 class="card-title text-primary" >Jinja</h2>
-                <p class="card-text">Description: Jinja</p>
+                <h2 class="card-title text-primary" >{{recipe.name}}</h2>
+                <p class="card-text">Description: {{recipe.description}}</p>
                 <p class="card-text">Under 30 Minutes:
                     {% if recipe.cook_time == 1 %}
                     Yes
