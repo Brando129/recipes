@@ -31,6 +31,27 @@ def edit_recipe(id):
     return render_template('edit_recipe.html', edit=models_recipe.Recipe.get_one_recipe(data),
     user=models_user.User.get_by_id(user_data))
 
+# Route to edit the recipe.
+@app.route('/update/recipe')
+def update_recipe():
+    print("Updating the recipe route...")
+    if 'user_id' not in session:
+        return redirect('/logout')
+    if not models_recipe.Recipe.validate_recipe(request.form):
+        return redirect('/new/recipe')
+    data = {
+        "name": request.form['name'],
+        "description": request.form['description'],
+        "instructions": request.form['instructions'],
+        # cook_time must come back as an integer.
+        "cook_time": int(request.form['cook_time']),
+        "date_made": request.form['date_made'],
+        "id": request.form['id']
+    }
+    models_recipe.Recipe.update_recipe(data)
+    return redirect('/recipes')
+
+
 # POST Routes
 @app.route('/create/recipe', methods=['POST'])
 def create_recipe():
