@@ -27,10 +27,14 @@
                 <h2 class="card-title text-primary" >Jinja</h2>
                 <p class="card-text">Description: Jinja</p>
                 <p class="card-text">Under 30 Minutes:
-                    
+                    {% if recipe.cook_time == 1 %}
+                    Yes
+                    {% else %}
+                    No
+                    {% endif %}
                 </p>
-                <p class="card-text">Instructions: Jinja</p>
-                <p class="card-text">Made On: Jinja</p>
+                <p class="card-text">Instructions: {{recipe.instructions}}</p>
+                <p class="card-text">Made On: {{recipe.date_made.strftime('%Y-%m-%d')}}</p>
             </div>
         </div>
     </div>
