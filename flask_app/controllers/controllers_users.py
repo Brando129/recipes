@@ -27,8 +27,8 @@ def check_session():
 # Route for logging a user out
 @app.route('/logout')
 def logout():
-    print("Logging out")
     session.clear()
+    print("Logging out...")
     return redirect('/')
 
 # Post Routes
@@ -53,6 +53,7 @@ def register():
     This is how we keep our applications safe."""
     id = models_user.User.save(data)
     session['user_id'] = id
+    print("Registering user complete...")
     return redirect('/recipes')
 
 # Route for logging a user in.
@@ -67,5 +68,5 @@ def login():
         flash("Invalid password.", "login")
         return redirect('/')
     session['user_id'] = user.id
-    print("Log in successful.")
+    print("Log in successful...")
     return redirect('/recipes')
