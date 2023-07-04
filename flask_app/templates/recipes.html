@@ -11,8 +11,40 @@
     <title>Recipes</title>
 </head>
 <body>
-    <div>
-        <h1 class="m-3">Welcome {{user.first_name}}!</h1>
+    <!-- Page Container -->
+    <div class="container col-md-10">
+        <!-- Navbar -->
+        <div class="navbar bg-dark text-light justify-content-between p-3">
+            <h3>Welcome, {{user.first_name}}</h3>
+            <div>
+                <a href="/create_recipe" class="btn btn-primary">Create</a>
+                <a href="/logout" class="btn btn-primary">Logout</a>
+            </div>
+        </div>
+        <!-- End of Navbar -->
+        <h3 class="p-3">All posted recipes:</h3>
+        <!-- Table -->
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Under</th>
+                    <th class="text-center">Posted By</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Jinja for loop -->
+                <tr>
+                    <td class="text-center">jinja</td>
+                    <td class="text-center">jinja</td>
+                    <td class="text-center">jinja</td>
+                    <td class="text-center"><a href="#">view recipe</a> |<a href="#">edit</a> | <a href="#">delete</a></td>
+                </tr>
+                <!-- End of Jinja for loop -->
+            </tbody>
+        </table>
+        <!-- End of Table -->
     </div>
-    <a href="/logout" class="btn btn-primary mt-3">Logout</a>
+    <!-- End of Page Container -->
 </html>
