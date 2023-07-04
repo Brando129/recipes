@@ -28,21 +28,28 @@
             <thead>
                 <tr>
                     <th class="text-center">Name</th>
-                    <th class="text-center">Under</th>
+                    <th class="text-center">Under 30 Minutes</th>
                     <th class="text-center">Posted By</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Jinja for loop -->
+                {% for recipe in recipes %}
                 <tr>
-                    <td class="text-center">jinja</td>
-                    <td class="text-center">jinja</td>
-                    <td class="text-center">jinja</td>
-                    <td class="text-center"><a class="act_links" href="#">view recipe</a>
-                    | <a class="act_links" href="#">edit</a> | <a class="act_links" href="#">delete</a></td>
+                    <td class="text-center">{{recipe.name}}</td>
+                    {% if recipe.cook_time == 1 %}
+                    <td class="text-center">Yes</td>
+                    {% else %}
+                    <td class="text-center">No</td>
+                    {% endif %}
+                    <td class="text-center"><a href="/recipe/{{recipe.id}}" class="act_links">View recipe</a>
+                        {% if recipe.user_id == session.user_id %}
+                        <a href="/edit/recipe/{{recipe.id}}" class="act_links">Edit</a>
+                        <a href="/destroy/recipe/{{recipe.id}}" class="act_links">Delete</a>
+                        {% endif %}
+                    </td>
                 </tr>
-                <!-- End of Jinja for loop -->
+                {% endfor %}
             </tbody>
         </table>
         <!-- End of Table -->
