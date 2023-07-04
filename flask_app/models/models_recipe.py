@@ -66,3 +66,20 @@ class Recipe:
         query = "DELETE FROM recipes WHER id = %(id)s;"
         print("Deletion successful...")
         return connectToMySQL(db).query_db(query, data)
+
+    # Staticmethod for validating a recipe.
+    @staticmethod
+    def validate_recipe(recipe):
+        is_valid = True
+        if len(recipe['name']) < 3:
+            is_valid = False
+            flash("Name must be at least 3 characters", "recipe")
+        if len(recipe['description']) < 3:
+            is_valid = False
+            flash("Description must be at least 3 characters", "recipe")
+        if len(recipe['instructions']) < 3:
+            is_valid = False
+            flash("Instructions must be at least 3 characters", "recipe")
+        if len(recipe['date_made']) == "":
+            is_valid = False
+            flash("Please enter a date", "recipe")
