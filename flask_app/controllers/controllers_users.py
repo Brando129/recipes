@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
-from flask_app.models import models_user
+from flask_app.models import models_user, models_recipe
 # Bcrypt import
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
@@ -22,7 +22,8 @@ def check_session():
         "id": session['user_id']
     }
     print("Successfully got the user id...")
-    return render_template('recipes.html', user=models_user.User.get_by_id(data))
+    return render_template('recipes.html', user=models_user.User.get_by_id(data),
+    recipes=models_recipe.Recipe.get_all_recipes())
 
 # Route for logging a user out
 @app.route('/logout')

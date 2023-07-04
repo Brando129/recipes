@@ -23,7 +23,8 @@
         </div>
         <!-- End of Navbar -->
         <!-- Form -->
-        <form action="/create/recipe" method="POST" class="col-11 p-3 my-4 mx-auto text-light bg-dark">
+        <form action="/update/recipe" method="POST" class="col-11 p-3 my-4 mx-auto text-light bg-dark">
+            <input type="hidden" name="id" value="{{edit.id}}">
             <h2 class="text-primary">Add a New Recipe</h2>
             <!-- Flash messages -->
             {% with messages = get_flashed_messages(category_filter=['recipe']) %}     <!-- declare a variable called messages -->
@@ -40,15 +41,15 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control">
+                        <input type="text" name="name" class="form-control" value="{{edit.name}}">
                     </div>
                     <div class="form-group">
                         <label for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea name="description" cols="30" rows="5" class="form-control">{{edit.description}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="instructions">Instructions:</label>
-                        <textarea name="instructions" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea name="instructions" cols="30" rows="5" class="form-control">{{edit.instructions}}</textarea>
                     </div>
                 </div>
                 <!-- End of Left form column -->
@@ -56,7 +57,7 @@
                 <div class="col-4">
                     <div class="form-group">
                         <label for="date_made">Date Made:</label>
-                        <input type="date" name="date_made" class="form-control">
+                        <input type="date" name="date_made" value="{{edit.date_made.strftime('%Y-%m-%d')}}" class="form-control">
                     </div>
                     <label for="cook_time">Under 30 Minutes?:</label>
                     <div class="input-group-text bg-dark">
@@ -68,6 +69,7 @@
                         <label for="1" class="text-success">Yes</label>
                     </div>
                     <br>
+                    <input type="submit" value="Edit Recipe" class="btn btn-primary">
                 </div>
                 <!-- End of Right form column -->
             </div>

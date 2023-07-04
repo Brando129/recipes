@@ -97,7 +97,7 @@ def create_recipe():
         # cook_time must come back as an integer.
         "cook_time": int(request.form['cook_time']),
         "date_made": request.form['date_made'],
-        "user_id": request.form['user_id']
+        "user_id": session['user_id']
     }
     models_recipe.Recipe.save_recipe(data)
     print("Recipe created successfully...")
