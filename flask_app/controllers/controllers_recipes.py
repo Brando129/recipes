@@ -49,6 +49,36 @@ def update_recipe():
         "id": request.form['id']
     }
     models_recipe.Recipe.update_recipe(data)
+    print("Updating recipe sucessful...")
+    return redirect('/recipes')
+
+# Route to take us to the show recipe page.
+@app.route('/recipe/<int:id>')
+def show_recipe(id):
+    print("Show recipe route...")
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id": id
+    }
+    user_data = {
+        "id": session['user_id']
+    }
+    print("Show recipe route successful...")
+    return render_template('show_recipe.html', recipe=models_recipe.Recipe.get_one_recipe(data),
+    user=models_user.User.get_by_id(user_data))
+
+# Route for deleting a recipe.
+@app.route('/destroy/recipe/<int:id>')
+def destroy_recipe(id):
+    print("Destroy recipe route...")
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data = {
+        "id": id
+    }
+    models_recipe.Recipe.destroy_recipe(data)
+    print("Recipe destruction complete...")
     return redirect('/recipes')
 
 
