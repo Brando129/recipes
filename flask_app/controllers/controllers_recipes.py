@@ -16,3 +16,21 @@ def new_recipe():
     return render_template('add_recipe.html', user=models_user.User.get_by_id(data))
 
 # POST Routes
+@app.route('/create/recipe', methods=['POST'])
+def create_recipe():
+    print("Creating new recipe route...")
+    if 'user_id' not in session:
+        return redirect('/logout')
+    if not models_recipe.Recipe.validate_recipe(request.form):
+        return redirect('/new/recipe')
+    data = {
+        "name": request.form['name'],
+        "description": request.form['description'],
+        "instructions": request.form['instructions'],
+        "cook_time": int(request.form['cook_time']),
+        "date_made": request.form['date_made'],
+        "user_id": request.form['user_id']
+    }
+    models_recipe.Recipe.save_recipe(data)
+    print("Recipe created successfully...")
+    return redirect('/recipes')
