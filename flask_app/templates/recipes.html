@@ -42,7 +42,7 @@
                     {% else %}
                     <td class="text-center">No</td>
                     {% endif %}
-                    <td class="text-center">{{user.first_name}}</td>
+                    <td class="text-center">User ID: {{recipe.user_id}}</td>
                     <td class="text-center"><a href="/recipe/{{recipe.id}}" class="act_links">View recipe</a>
                         {% if recipe.user_id == session.user_id %}
                         | <a href="/edit/recipe/{{recipe.id}}" class="act_links">Edit</a>
