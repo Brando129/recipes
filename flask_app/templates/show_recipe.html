@@ -17,7 +17,7 @@
         <div class="navbar bg-dark text-light justify-content-between p-3">
             <h3>Welcome, {{user.first_name}}</h3>
             <div>
-                <a href="/recipes" class="btn btn-primary">Back to recipes</a>
+                <a href="/recipes" class="btn back_to_recipes btn-primary">Back to recipes</a>
                 <a href="/logout" class="btn btn-primary">Logout</a>
             </div>
         </div>
@@ -28,13 +28,13 @@
                 <p class="card-text">Description: {{recipe.description}}</p>
                 <p class="card-text">Under 30 Minutes:
                     {% if recipe.cook_time == 1 %}
-                    Yes
+                        Yes
                     {% else %}
-                    No
+                        No
                     {% endif %}
                 </p>
                 <p class="card-text">Instructions: {{recipe.instructions}}</p>
-                <p class="card-text">Made On: {{recipe.date_made.strftime('%Y-%m-%d')}}</p>
+                <p class="card-text">Made On: {{recipe.date_made.strftime('%m-%d-%Y')}}</p>
             </div>
         </div>
     </div>

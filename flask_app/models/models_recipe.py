@@ -83,4 +83,7 @@ class Recipe:
         if len(recipe['date_made']) == "":
             is_valid = False
             flash("Please enter a date", "recipe")
+        if len(recipe['cook_time']) == "":
+            is_valid = False
+            flash("Please select a cook time.", "recipe")
         return is_valid
