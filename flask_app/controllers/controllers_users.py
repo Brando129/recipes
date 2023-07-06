@@ -21,9 +21,9 @@ def check_session():
     data = {
         "id": session['user_id']
     }
+    all_recipes = models_recipe.Recipe.get_all_recipes()
     print("Successfully got the user id...")
-    return render_template('recipes.html', user=models_user.User.get_by_id(data),
-    recipes=models_recipe.Recipe.get_all_recipes())
+    return render_template('recipes.html', user=models_user.User.get_by_id(data), recipes=all_recipes)
 
 # Route for logging a user out
 @app.route('/logout')

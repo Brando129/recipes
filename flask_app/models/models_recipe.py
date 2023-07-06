@@ -1,6 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 # Flash messages import
 from flask import flash
+from flask_app.models import models_user
 
 # Database name
 db = "recipes_schema"
@@ -32,11 +33,23 @@ class Recipe:
     @classmethod
     def get_all_recipes(cls):
         print("Getting all the recipes...")
-        query = "SELECT * FROM recipes;"
+        query = """SELECT * FROM recipes JOIN users on
+                users.id  = recipes.user_id;"""
         results = connectToMySQL(db).query_db(query)
         all_recipes = []
         for row in results:
-            all_recipes.append(cls(row))
+            recipe = cls(row)
+            posting_user = {
+                "id": row['users.id'],
+                "first_name": row['first_name'],
+                "last_name": row['last_name'],
+                "email": row['email'],
+                "password": row['password'],
+                "created_at": row['users.created_at'],
+                "updated_at": row['users.updated_at']
+            }
+            recipe.user = models_user.User(posting_user)
+            all_recipes.append(recipe)
         print("Successfully gathered all recipes...")
         return all_recipes
 
@@ -83,7 +96,4 @@ class Recipe:
         if recipe['date_made'] == "":
             is_valid = False
             flash("Please enter a date", "recipe")
-        # if len(recipe['cook_time']) == "":
-        #     is_valid = False
-        #     flash("Please select a cook time.", "recipe")
         return is_valid
