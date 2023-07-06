@@ -22,7 +22,7 @@
             </div>
         </div>
         <!-- End of Navbar -->
-        <h5 class="text-center mt-3">Posted By: {{recipe.user_id.first_name}}</h5>
+        <!-- Show recipe card -->
         <div class="card col-6 mx-auto my-3 bg-dark text-light">
             <div class="card-body">
                 <h2 class="card-title text-primary" >{{recipe.name}}</h2>
@@ -38,6 +38,7 @@
                 <p class="card-text">Made On: {{recipe.date_made.strftime('%m-%d-%Y')}}</p>
             </div>
         </div>
+        <!-- End of the show recipe card -->
     </div>
     <!-- End of Page Container -->
 </html>
