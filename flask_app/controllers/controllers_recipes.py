@@ -44,7 +44,8 @@ def show_recipe(id):
         "id": session['user_id']
     }
     print("Show recipe route successful...")
-    return render_template('show_recipe.html', recipe=models_recipe.Recipe.get_one_recipe(data),
+    recipe=models_recipe.Recipe.get_one_recipe(data)
+    return render_template('show_recipe.html', recipe=recipe,
     user=models_user.User.get_by_id(user_data))
 
 # Route for deleting a recipe.
