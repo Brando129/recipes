@@ -89,7 +89,8 @@ def update_recipe():
     if 'user_id' not in session:
         return redirect('/logout')
     if not models_recipe.Recipe.validate_recipe(request.form):
-        return redirect('/new/recipe')
+        id = request.form['id']
+        return redirect(f'/edit/recipe/{id}')
     data = {
         "name": request.form['name'],
         "description": request.form['description'],
