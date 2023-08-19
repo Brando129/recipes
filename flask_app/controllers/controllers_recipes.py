@@ -40,11 +40,11 @@ def show_recipe(id):
     data = {
         "id": id
     }
+    recipe=models_recipe.Recipe.get_one_recipe(data)
     user_data = {
-        "id": session['user_id']
+        "id": recipe.user_id
     }
     print("Show recipe route successful...")
-    recipe=models_recipe.Recipe.get_one_recipe(data)
     return render_template('show_recipe.html', recipe=recipe,
     user=models_user.User.get_by_id(user_data))
 
