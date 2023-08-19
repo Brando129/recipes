@@ -96,4 +96,7 @@ class Recipe:
         if recipe['date_made'] == "":
             is_valid = False
             flash("Please enter a date", "recipe")
+        # if recipe['cook_time'] == "":
+        #     is_valid = False
+        #     flash("Please give a cook time", "recipe")
         return is_valid
