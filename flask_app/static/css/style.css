@@ -57,11 +57,20 @@
 /* Navbar buttons */
 .create_btn,
 .back_to_recipes {
-    margin-right: 50px;
+    margin-right: 25px;
 }
 
 /* Action links */
 .act_links {
+    color: whitesmoke;
     text-decoration: none;
     font-size: larger;
+}
+
+.table_txt {
+    font-size: larger;
+    /* font-family: 'Dancing Script', cursive; */
+    text-shadow: 2px 2px black;
+    color: whitesmoke;
+
 }

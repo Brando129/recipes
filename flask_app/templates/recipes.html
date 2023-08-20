@@ -10,33 +10,33 @@
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Recipes</title>
 </head>
-<body>
+<body class="fixed-bg" style="background-image: url('/static/img/all_recipes.png'); height: 400px;">
     <!-- Page Container -->
     <div class="container col-md-10">
         <!-- Navbar -->
         <div class="navbar bg-dark text-light justify-content-between p-3">
-            <h3>Welcome, {{user.first_name}}</h3>
+            <h3 class="field_txt">Welcome, {{user.first_name}}</h3>
             <div>
-                <a href="/new/recipe" class="btn create_btn btn-primary">Create</a>
-                <a href="/logout" class="btn btn-primary">Logout</a>
+                <a href="/new/recipe" class="btn create_btn btn-success">Create</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
             </div>
         </div>
         <!-- End of Navbar -->
-        <h3 class="text-center p-3">All posted recipes</h3>
+        <h3 class="text-center log_reg_txt p-3">Recipes</h3>
         <!-- Table -->
-        <table class="table table-bordered table-dark table-hover">
+        <table class="table table-bordered table-dark opacity-75 table-hover">
             <thead>
-                <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Under 30 Minutes</th>
-                    <th class="text-center">Posted By</th>
-                    <th class="text-center">Actions</th>
+                <tr class="text-center field_txt">
+                    <th>Name</th>
+                    <th>Under 30 Minutes</th>
+                    <th>Posted By</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table_txt">
                 <!-- Reverse is for the newest recipe entry to display first. -->
                 {% for recipe in recipes | reverse %}
-                <tr>
+                <tr class="act_links">
                     <td class="text-center">{{recipe.name}}</td>
                     {% if recipe.cook_time == 1 %}
                     <td class="text-center">Yes</td>
@@ -46,8 +46,8 @@
                     <td class="text-center">{{recipe.user.first_name}}</td>
                     <td class="text-center"><a href="/recipe/{{recipe.id}}" class="act_links">View recipe</a>
                         {% if recipe.user_id == session.user_id %}
-                        | <a href="/edit/recipe/{{recipe.id}}" class="act_links">Edit</a>
-                        | <a href="/destroy/recipe/{{recipe.id}}" class="act_links">Delete</a>
+                        | <a href="/edit/recipe/{{recipe.id}}" class="act_links text-warning">Edit</a>
+                        | <a href="/destroy/recipe/{{recipe.id}}" class="act_links text-danger">Delete</a>
                         {% endif %}
                     </td>
                 </tr>

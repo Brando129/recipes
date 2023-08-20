@@ -6,19 +6,19 @@ from flask_app.models import models_user, models_recipe
 # Route to take us the the add recipe page.
 @app.route('/new/recipe')
 def new_recipe():
-    print("Add recipe route...")
+    # print("Add recipe route...")
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
         "id": session['user_id']
     }
-    print("Add recipe route successful...")
+    # print("Add recipe route successful...")
     return render_template('add_recipe.html', user=models_user.User.get_by_id(data))
 
 # Route to take us to the edit recipe page.
 @app.route('/edit/recipe/<int:id>')
 def edit_recipe(id):
-    print("Edit recipe route...")
+    # print("Edit recipe route...")
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
@@ -27,14 +27,14 @@ def edit_recipe(id):
     user_data = {
         "id": session['user_id']
     }
-    print("Edit recipe route successful...")
+    # print("Edit recipe route successful...")
     return render_template('edit_recipe.html', edit=models_recipe.Recipe.get_one_recipe(data),
     user=models_user.User.get_by_id(user_data))
 
 # Route to take us to the show recipe page.
 @app.route('/recipe/<int:id>')
 def show_recipe(id):
-    print("Show recipe route...")
+    # print("Show recipe route...")
     if 'user_id' not in session:
         return redirect('/logout')
     data = {
@@ -44,7 +44,7 @@ def show_recipe(id):
     user_data = {
         "id": recipe.user_id
     }
-    print("Show recipe route successful...")
+    # print("Show recipe route successful...")
     return render_template('show_recipe.html', recipe=recipe,
     user=models_user.User.get_by_id(user_data))
 
@@ -65,7 +65,7 @@ def destroy_recipe(id):
 # POST Routes
 @app.route('/create/recipe', methods=['POST'])
 def create_recipe():
-    print("Creating new recipe route...")
+    # print("Creating new recipe route...")
     if 'user_id' not in session:
         return redirect('/logout')
     if not models_recipe.Recipe.validate_recipe(request.form):
@@ -80,13 +80,13 @@ def create_recipe():
         "user_id": session['user_id']
     }
     models_recipe.Recipe.save_recipe(data)
-    print("Recipe created successfully...")
+    # print("Recipe created successfully...")
     return redirect('/recipes')
 
 # Route to edit the recipe.
 @app.route('/update/recipe', methods=['POST'])
 def update_recipe():
-    print("Updating the recipe route...")
+    # print("Updating the recipe route...")
     if 'user_id' not in session:
         return redirect('/logout')
     if not models_recipe.Recipe.validate_recipe(request.form):
@@ -102,5 +102,5 @@ def update_recipe():
         "id": request.form['id']
     }
     models_recipe.Recipe.update_recipe(data)
-    print("Updating recipe sucessful...")
+    # print("Updating recipe sucessful...")
     return redirect('/recipes')
