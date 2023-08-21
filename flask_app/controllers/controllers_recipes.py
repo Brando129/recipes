@@ -6,7 +6,7 @@ from flask_app.models import models_user, models_recipe
 # Route to take us the the add recipe page.
 @app.route('/new/recipe')
 def new_recipe():
-    # print("Add recipe route...")
+    # print("Add recipe route...")y
     if 'user_id' not in session:
         return redirect('/logout')
     data = {

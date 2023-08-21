@@ -54,11 +54,6 @@
 }
 /* End of Login and Registration */
 
-/* Navbar buttons */
-.create_btn,
-.back_to_recipes {
-    margin-right: 25px;
-}
 
 /* Action links */
 .act_links {
@@ -67,6 +62,7 @@
     font-size: larger;
 }
 
+/* Recipes table text */
 .table_txt {
     font-size: larger;
     /* font-family: 'Dancing Script', cursive; */
