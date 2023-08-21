@@ -10,72 +10,72 @@
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Edit Recipe</title>
 </head>
-<body>
+<body class="fixed-bg" style="background-image: url('/static/img/edit.png'); height: 400px;">
     <!-- Page Container -->
-    <div class="container col-md-10">
+    <div class="col-12">
         <!-- Navbar -->
-        <div class="navbar bg-dark text-light justify-content-between p-3">
-            <h3>Edit Recipe!</h3>
+        <div class="navbar bg-dark log_reg_txt justify-content-between p-4">
+            <h3 class="log_reg_txt">Edit Recipe</h3>
             <div>
-                <a href="/recipes" class="btn back_to_recipes btn-primary">Back to recipes</a>
-                <a href="/logout" class="btn btn-primary">Logout</a>
+                <a href="/recipes" class="btn mx-3 btn-success">Back to recipes</a>
+                <a href="/logout" class="btn btn-danger">Logout</a>
             </div>
         </div>
         <!-- End of Navbar -->
-        <!-- Form -->
-        <form action="/update/recipe" method="POST" class="col-11 p-3 my-4 mx-auto text-light bg-dark">
-            <input type="hidden" name="id" value="{{edit.id}}">
-            <h2 class="text-primary">{{edit.name}}</h2>
-            <!-- Flash messages -->
-            {% with messages = get_flashed_messages(category_filter=['recipe']) %}     <!-- declare a variable called messages -->
-                {% if messages %}                            <!-- check if there are any messages -->
-                    {% for message in messages %}            <!-- loop through the messages -->
-                        <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <!-- End of Flash messages -->
-            <!-- Form container -->
-            <div class="d-flex justify-content-between col-9">
-                <!-- Left form column -->
-                <div class="col-4">
-                    <div class="form-group">
-                        <label class="mb-2" for="name">Name:</label>
-                        <input type="text" name="name" class="form-control" value="{{edit.name}}">
+        <div class="col-6 mx-auto opacity-75">
+            <!-- Form -->
+            <form action="/update/recipe" method="POST" class="p-5 my-5 bg-dark rounded">
+                <input type="hidden" name="id" value="{{edit.id}}">
+                <h2 class="text-center log_reg_txt">{{edit.name}}</h2>
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages(category_filter=['recipe']) %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <!-- End of Flash messages -->
+                <!-- Form container -->
+                <div class="d-flex mx-auto justify-content-between">
+                    <!-- Left form column -->
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="mb-2 field_txt" for="name">Name:</label>
+                            <input type="text" name="name" class="form-control" value="{{edit.name}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="my-2 field_txt" for="description">Description:</label>
+                            <textarea name="description" cols="30" rows="5" class="form-control">{{edit.description}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="my-2 field_txt" for="instructions">Instructions:</label>
+                            <textarea name="instructions" cols="30" rows="5" class="form-control">{{edit.instructions}}</textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label class="my-2" for="description">Description:</label>
-                        <textarea name="description" cols="30" rows="5" class="form-control">{{edit.description}}</textarea>
+                    <!-- End of Left form column -->
+                    <!-- Right form column -->
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label class="mb-2 field_txt" for="date_made">Date Made:</label>
+                            <input type="date" name="date_made" value="{{edit.date_made.strftime('%m-%d-%Y')}}" class="form-control">
+                        </div>
+                        <label class="my-2 field_txt" for="cook_time">Under 30 Minutes:</label>
+                        <div>
+                            <label for="1" class="text-success field_txt">Yes</label>
+                            <input class="yes_rb" type="radio" name="cook_time" value="1">
+                            <label for="0" class="text-danger field_txt">No</label>
+                            <input type="radio" name="cook_time" value="0">
+                        </div>
+                        <br>
+                        <input type="submit" value="Submit" class="btn btn-success">
                     </div>
-                    <div class="form-group">
-                        <label class="my-2" for="instructions">Instructions:</label>
-                        <textarea name="instructions" cols="30" rows="5" class="form-control">{{edit.instructions}}</textarea>
-                    </div>
+                    <!-- End of Right form column -->
                 </div>
-                <!-- End of Left form column -->
-                <!-- Right form column -->
-                <div class="col-4">
-                    <div class="form-group">
-                        <label class="mb-2" for="date_made">Date Made:</label>
-                        <input type="date" name="date_made" value="{{edit.date_made.strftime('%m-%d-%Y')}}" class="form-control">
-                    </div>
-                    <label class="my-2" for="cook_time">Under 30 Minutes:</label>
-                    <div class="bg-dark">
-                        <input type="radio" name="cook_time" value="0">
-                        <label for="0" class="text-warning">No</label>
-                    </div>
-                    <div class="bg-dark">
-                        <input type="radio" name="cook_time" value="1">
-                        <label for="1" class="text-success">Yes</label>
-                    </div>
-                    <br>
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                </div>
-                <!-- End of Right form column -->
-            </div>
-            <!-- End of Form container -->
-        </form>
-        <!-- End of Form -->
+                <!-- End of Form container -->
+            </form>
+            <!-- End of Form -->
+        </div>
     </div>
     <!-- End of Page Container -->
 </html>
